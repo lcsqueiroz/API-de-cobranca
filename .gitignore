@@ -161,3 +161,6 @@ dist/
 
 # Variáveis de ambiente
 .env
+
+# Editor
+.vscode/
