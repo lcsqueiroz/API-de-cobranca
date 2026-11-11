@@ -147,3 +147,17 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Projeto (por enquanto fora do versionamento)
+CLAUDE.md
+docs/
+DOCS/
+
+# Banco SQLite local
+*.db
+
+# Build
+dist/
+
+# Variáveis de ambiente
+.env
