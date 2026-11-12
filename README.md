@@ -127,6 +127,9 @@ As chamadas estão no arquivo `insomnia.json`, na raiz do projeto.
    - **0 - Health**
    - **1 - Associados**: cadastrar, CPF repetido, CPF inválido
    - **2 - Cobranças**: gerar, mês repetido, mês inválido, associado inexistente, consultar, cobrança inexistente
+   - **3 - Webhook**: pagamento registrado, mesmo aviso reenviado, outro evento para cobrança já paga, nosso número inexistente, data inválida e a consulta da cobrança paga
+
+   Rode as pastas na ordem (0 → 3): as cobranças usam o associado criado antes, e o webhook usa a cobrança `00000001`.
 4. O nome de cada chamada traz o status HTTP esperado, por exemplo `Cadastrar associado (201)`.
 5. A aba **Docs** de cada chamada mostra a resposta esperada (status e JSON), gerada a partir de uma execução real com o banco vazio.
 
