@@ -1,0 +1,211 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-11-12T01:36:21.154Z",
+  "__export_source": "insomnia.desktop.app",
+  "resources": [
+    {
+      "_id": "wrk_aeig",
+      "_type": "workspace",
+      "parentId": null,
+      "name": "AEIG - API de Cobrança",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "parentId": "wrk_aeig",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000"
+      }
+    },
+    {
+      "_id": "fld_health",
+      "_type": "request_group",
+      "parentId": "wrk_aeig",
+      "name": "0 - Health",
+      "metaSortKey": 0
+    },
+    {
+      "_id": "req_1",
+      "_type": "request",
+      "parentId": "fld_health",
+      "name": "Health",
+      "method": "GET",
+      "url": "{{ _.base_url }}/health",
+      "metaSortKey": 1,
+      "headers": [],
+      "body": {}
+    },
+    {
+      "_id": "fld_assoc",
+      "_type": "request_group",
+      "parentId": "wrk_aeig",
+      "name": "1 - Associados",
+      "metaSortKey": 2
+    },
+    {
+      "_id": "req_3",
+      "_type": "request",
+      "parentId": "fld_assoc",
+      "name": "Cadastrar associado (201)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/associados",
+      "metaSortKey": 3,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Maria Silva\",\n  \"cpf\": \"529.982.247-25\",\n  \"mensalidade\": 189.9\n}"
+      }
+    },
+    {
+      "_id": "req_4",
+      "_type": "request",
+      "parentId": "fld_assoc",
+      "name": "CPF já cadastrado (409)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/associados",
+      "metaSortKey": 4,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Maria Silva\",\n  \"cpf\": \"52998224725\",\n  \"mensalidade\": 189.9\n}"
+      }
+    },
+    {
+      "_id": "req_5",
+      "_type": "request",
+      "parentId": "fld_assoc",
+      "name": "CPF inválido (400)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/associados",
+      "metaSortKey": 5,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Joao\",\n  \"cpf\": \"111.111.111-11\",\n  \"mensalidade\": 150\n}"
+      }
+    },
+    {
+      "_id": "fld_cob",
+      "_type": "request_group",
+      "parentId": "wrk_aeig",
+      "name": "2 - Cobranças",
+      "metaSortKey": 6
+    },
+    {
+      "_id": "req_7",
+      "_type": "request",
+      "parentId": "fld_cob",
+      "name": "Gerar cobrança (201)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/cobrancas",
+      "metaSortKey": 7,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-10\"\n}"
+      }
+    },
+    {
+      "_id": "req_8",
+      "_type": "request",
+      "parentId": "fld_cob",
+      "name": "Cobrança repetida no mês (409)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/cobrancas",
+      "metaSortKey": 8,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-10\"\n}"
+      }
+    },
+    {
+      "_id": "req_9",
+      "_type": "request",
+      "parentId": "fld_cob",
+      "name": "Mês inválido (400)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/cobrancas",
+      "metaSortKey": 9,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-13\"\n}"
+      }
+    },
+    {
+      "_id": "req_10",
+      "_type": "request",
+      "parentId": "fld_cob",
+      "name": "Associado inexistente (404)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/cobrancas",
+      "metaSortKey": 10,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"associado_id\": 99,\n  \"mes_referencia\": \"2026-10\"\n}"
+      }
+    },
+    {
+      "_id": "req_11",
+      "_type": "request",
+      "parentId": "fld_cob",
+      "name": "Consultar cobrança (200)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/cobrancas/00000001",
+      "metaSortKey": 11,
+      "headers": [],
+      "body": {}
+    },
+    {
+      "_id": "req_12",
+      "_type": "request",
+      "parentId": "fld_cob",
+      "name": "Cobrança inexistente (404)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/cobrancas/99999999",
+      "metaSortKey": 12,
+      "headers": [],
+      "body": {}
+    }
+  ]
+}
