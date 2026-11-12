@@ -1,6 +1,7 @@
 import express, { type Request, type Response } from 'express';
 import { rotaNaoEncontrada, tratarErros } from './middlewares/erros.js';
 import { associadosRouter } from './routes/associados.js';
+import { cobrancasRouter } from './routes/cobrancas.js';
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3000);
@@ -15,6 +16,7 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 app.use('/associados', associadosRouter);
+app.use('/cobrancas', cobrancasRouter);
 
 app.use(rotaNaoEncontrada);
 app.use(tratarErros);
