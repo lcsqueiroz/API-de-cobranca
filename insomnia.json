@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2026-11-12T01:41:28.749Z",
+  "__export_date": "2026-11-12T05:02:01.123Z",
   "__export_source": "insomnia.desktop.app",
   "resources": [
     {
@@ -216,6 +216,125 @@
       "headers": [],
       "body": {},
       "description": "**Resposta esperada:** `404`\n\n```json\n{\n  \"erro\": \"Cobrança não encontrada\"\n}\n```"
+    },
+    {
+      "_id": "fld_wh",
+      "_type": "request_group",
+      "parentId": "wrk_aeig",
+      "name": "3 - Webhook",
+      "metaSortKey": 13
+    },
+    {
+      "_id": "req_14",
+      "_type": "request",
+      "parentId": "fld_wh",
+      "name": "Pagamento registrado (200)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/webhooks/pagamento",
+      "metaSortKey": 14,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"id_evento\": \"evt_000123\",\n  \"nosso_numero\": \"00000001\",\n  \"data_pagamento\": \"2026-10-15\"\n}"
+      },
+      "description": "**Resposta esperada:** `200`\n\n```json\n{\n  \"mensagem\": \"Pagamento registrado\"\n}\n```"
+    },
+    {
+      "_id": "req_15",
+      "_type": "request",
+      "parentId": "fld_wh",
+      "name": "Mesmo aviso reenviado (200)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/webhooks/pagamento",
+      "metaSortKey": 15,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"id_evento\": \"evt_000123\",\n  \"nosso_numero\": \"00000001\",\n  \"data_pagamento\": \"2026-10-15\"\n}"
+      },
+      "description": "**Resposta esperada:** `200`\n\n```json\n{\n  \"mensagem\": \"Evento já processado\"\n}\n```"
+    },
+    {
+      "_id": "req_16",
+      "_type": "request",
+      "parentId": "fld_wh",
+      "name": "Outro evento, cobrança já paga (200)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/webhooks/pagamento",
+      "metaSortKey": 16,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"id_evento\": \"evt_000124\",\n  \"nosso_numero\": \"00000001\",\n  \"data_pagamento\": \"2026-10-20\"\n}"
+      },
+      "description": "**Resposta esperada:** `200`\n\n```json\n{\n  \"mensagem\": \"Cobrança já estava paga\"\n}\n```"
+    },
+    {
+      "_id": "req_17",
+      "_type": "request",
+      "parentId": "fld_wh",
+      "name": "Nosso número inexistente (404)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/webhooks/pagamento",
+      "metaSortKey": 17,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"id_evento\": \"evt_000125\",\n  \"nosso_numero\": \"99999999\",\n  \"data_pagamento\": \"2026-10-15\"\n}"
+      },
+      "description": "**Resposta esperada:** `404`\n\n```json\n{\n  \"erro\": \"Cobrança não encontrada\"\n}\n```"
+    },
+    {
+      "_id": "req_18",
+      "_type": "request",
+      "parentId": "fld_wh",
+      "name": "Data inválida (400)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/webhooks/pagamento",
+      "metaSortKey": 18,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"id_evento\": \"evt_000126\",\n  \"nosso_numero\": \"00000001\",\n  \"data_pagamento\": \"2026-13-45\"\n}"
+      },
+      "description": "**Resposta esperada:** `400`\n\n```json\n{\n  \"erro\": \"data_pagamento deve estar no formato AAAA-MM-DD\"\n}\n```"
+    },
+    {
+      "_id": "req_19",
+      "_type": "request",
+      "parentId": "fld_wh",
+      "name": "Consultar cobrança paga (200)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/cobrancas/00000001",
+      "metaSortKey": 19,
+      "headers": [],
+      "body": {},
+      "description": "**Resposta esperada:** `200`\n\n```json\n{\n  \"nosso_numero\": \"00000001\",\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-10\",\n  \"valor\": 189.9,\n  \"status\": \"PAGA\",\n  \"data_pagamento\": \"2026-10-15\"\n}\n```"
     }
   ]
 }
