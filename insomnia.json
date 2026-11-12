@@ -1,7 +1,7 @@
 {
   "_type": "export",
   "__export_format": 4,
-  "__export_date": "2026-11-12T01:36:21.154Z",
+  "__export_date": "2026-11-12T01:41:28.749Z",
   "__export_source": "insomnia.desktop.app",
   "resources": [
     {
@@ -36,7 +36,8 @@
       "url": "{{ _.base_url }}/health",
       "metaSortKey": 1,
       "headers": [],
-      "body": {}
+      "body": {},
+      "description": "**Resposta esperada:** `200`\n\n```json\n{\n  \"status\": \"Online\",\n  \"timestamp\": \"2026-11-12T01:32:06.354Z\"\n}\n```"
     },
     {
       "_id": "fld_assoc",
@@ -62,7 +63,8 @@
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"nome\": \"Maria Silva\",\n  \"cpf\": \"529.982.247-25\",\n  \"mensalidade\": 189.9\n}"
-      }
+      },
+      "description": "**Resposta esperada:** `201`\n\n```json\n{\n  \"id\": 1,\n  \"nome\": \"Maria Silva\",\n  \"cpf\": \"52998224725\",\n  \"mensalidade\": 189.9\n}\n```"
     },
     {
       "_id": "req_4",
@@ -81,7 +83,8 @@
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"nome\": \"Maria Silva\",\n  \"cpf\": \"52998224725\",\n  \"mensalidade\": 189.9\n}"
-      }
+      },
+      "description": "**Resposta esperada:** `409`\n\n```json\n{\n  \"erro\": \"CPF já cadastrado\"\n}\n```"
     },
     {
       "_id": "req_5",
@@ -100,7 +103,8 @@
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"nome\": \"Joao\",\n  \"cpf\": \"111.111.111-11\",\n  \"mensalidade\": 150\n}"
-      }
+      },
+      "description": "**Resposta esperada:** `400`\n\n```json\n{\n  \"erro\": \"CPF inválido\"\n}\n```"
     },
     {
       "_id": "fld_cob",
@@ -126,7 +130,8 @@
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-10\"\n}"
-      }
+      },
+      "description": "**Resposta esperada:** `201`\n\n```json\n{\n  \"nosso_numero\": \"00000001\",\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-10\",\n  \"valor\": 189.9,\n  \"status\": \"PENDENTE\",\n  \"data_pagamento\": null\n}\n```"
     },
     {
       "_id": "req_8",
@@ -145,7 +150,8 @@
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-10\"\n}"
-      }
+      },
+      "description": "**Resposta esperada:** `409`\n\n```json\n{\n  \"erro\": \"Já existe cobrança deste associado neste mês\"\n}\n```"
     },
     {
       "_id": "req_9",
@@ -164,7 +170,8 @@
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-13\"\n}"
-      }
+      },
+      "description": "**Resposta esperada:** `400`\n\n```json\n{\n  \"erro\": \"mes_referencia deve estar no formato AAAA-MM\"\n}\n```"
     },
     {
       "_id": "req_10",
@@ -183,7 +190,8 @@
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"associado_id\": 99,\n  \"mes_referencia\": \"2026-10\"\n}"
-      }
+      },
+      "description": "**Resposta esperada:** `404`\n\n```json\n{\n  \"erro\": \"Associado não encontrado\"\n}\n```"
     },
     {
       "_id": "req_11",
@@ -194,7 +202,8 @@
       "url": "{{ _.base_url }}/cobrancas/00000001",
       "metaSortKey": 11,
       "headers": [],
-      "body": {}
+      "body": {},
+      "description": "**Resposta esperada:** `200`\n\n```json\n{\n  \"nosso_numero\": \"00000001\",\n  \"associado_id\": 1,\n  \"mes_referencia\": \"2026-10\",\n  \"valor\": 189.9,\n  \"status\": \"PENDENTE\",\n  \"data_pagamento\": null\n}\n```"
     },
     {
       "_id": "req_12",
@@ -205,7 +214,8 @@
       "url": "{{ _.base_url }}/cobrancas/99999999",
       "metaSortKey": 12,
       "headers": [],
-      "body": {}
+      "body": {},
+      "description": "**Resposta esperada:** `404`\n\n```json\n{\n  \"erro\": \"Cobrança não encontrada\"\n}\n```"
     }
   ]
 }
