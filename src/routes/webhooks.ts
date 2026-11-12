@@ -22,7 +22,7 @@ router.post('/pagamento', (req: Request, res: Response) => {
   }
 
   // valida a data AAAA-MM-DD
-  if (typeof dataPagamento !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(dataPagamento)) {
+  if (typeof dataPagamento !== 'string' || !/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(dataPagamento)) {
     res.status(400).json({ erro: 'data_pagamento deve estar no formato AAAA-MM-DD' });
     return;
   }
