@@ -1,4 +1,4 @@
-# Teste Prático AEIG — API de Cobrança
+API de Cobrança
 
 API de cobrança em Node.js + TypeScript: cadastro de associados, geração de cobranças mensais e recebimento do aviso de pagamento do banco (webhook), sem processar o mesmo aviso duas vezes.
 
